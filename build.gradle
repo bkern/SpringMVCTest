@@ -1,0 +1,49 @@
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'idea'
+
+task createWrapper(type: Wrapper) {
+    gradleVersion: '1.0'
+}
+
+
+    repositories {
+        maven { url "http://repo.springsource.org/milestone" } 
+        maven { url "http://repo1.maven.org/maven2" }
+        flatDir { dirs "lib" }
+    }
+
+idea {
+    project {
+        jdkName = '1.7'
+        languageLevel = '1.7'
+    }
+}
+
+configurations.compile.transitive = true
+
+dependencies {
+    groovy localGroovy()
+    testCompile localGroovy()
+    def springframework_version = '3.2.0.RC2'
+
+    providedCompile "javax.servlet:servlet-api:2.5"
+    providedCompile "javax.servlet.jsp:jsp-api:2.1"
+    providedCompile "javax.el:el-api:1.0"
+
+    //spring
+    compile "org.springframework:spring-core:$springframework_version"
+    compile "org.springframework:spring-web:$springframework_version"
+    compile "org.springframework:spring-webmvc:$springframework_version"
+    compile "com.fasterxml.jackson.core:jackson-core:2.0.4"
+    compile "com.fasterxml.jackson.core:jackson-databind:2.0.4"
+
+    //junit
+    testCompile "junit:junit:4.10"
+    testCompile "org.springframework:spring-test:$springframework_version"
+    testCompile "org.springframework:spring-test-mvc:$springframework_version"
+    testCompile "com.jayway.jsonpath:json-path:0.8.1"
+}
+
+defaultTasks 'build'
