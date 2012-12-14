@@ -1,3 +1,10 @@
 .idea/
 .gradle/
 gradle/
+atlassian-ide-plugin.xml
+gradlew/
+gradlew.bat
+mvcTest.iml
+mvcTest.ipr
+mvcTest.iws
+out/
