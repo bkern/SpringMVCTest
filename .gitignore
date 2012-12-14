@@ -2,7 +2,7 @@
 .gradle/
 gradle/
 atlassian-ide-plugin.xml
-gradlew/
+gradlew
 gradlew.bat
 mvcTest.iml
 mvcTest.ipr
